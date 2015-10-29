@@ -1,0 +1,17 @@
+{
+  "services": [
+    {
+      "name": "FLINK",
+      "identities": [
+        {
+          "name": "/smokeuser"
+        }
+      ],
+      "components": [
+        {
+          "name": "FLINK_MASTER"
+        }
+      ]
+    }
+  ]
+}

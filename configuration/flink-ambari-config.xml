@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
+ 
+<configuration>
+
+  <!-- params for service -->
+
+  <property>
+    <name>flink_install_dir</name>
+    <value>/opt/flink</value>
+    <description>Location to install Flink</description>
+  </property> 
+  
+  <property>
+    <name>flink_numcontainers</name>
+    <value>1</value>
+    <description>Number of YARN container to allocate (=Number of Task Managers)</description>
+  </property> 
+
+
+  <property>
+    <name>flink_jobmanager_memory</name>
+    <value>768</value>
+    <description>Memory for JobManager Container [in MB]. Must be at least 768</description>
+  </property> 
+      
+  <property>
+    <name>flink_container_memory</name>
+    <value>1024</value>
+    <description>Memory per TaskManager Container [in MB]</description>
+  </property> 
+        
+
+  <property>
+    <name>setup_prebuilt</name>
+    <value>true</value>
+    <description>If false, will compile Flink from source instead</description>
+  </property>   
+  
+
+  <property>
+    <name>hadoop_conf_dir</name>
+    <value>/etc/hadoop/conf</value>
+    <description>Hadoop conf dir. Needed to submit to YARN</description>
+  </property>   
+
+  <property>
+    <name>flink_download_url</name>
+    <value>http://www.gtlib.gatech.edu/pub/apache/flink/flink-0.9.1/flink-0.9.1-bin-hadoop27.tgz</value>
+    <description>Snapshot download location. Downloaded when setup_prebuilt is true</description>
+  </property>   
+
+    
+  
+    
+</configuration>  

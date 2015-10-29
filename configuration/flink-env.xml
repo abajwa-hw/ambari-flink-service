@@ -1,0 +1,123 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
+
+<configuration>
+
+  <property>
+    <name>flink_log_dir</name>
+    <value>/var/log/flink</value>    
+    <description>flink Log dir</description>
+  </property> 
+
+ <property>
+    <name>flink_pid_dir</name>
+    <value>/var/run/flink</value>
+    <description>Dir containing process ID file</description>
+  </property>
+
+  <property>
+    <name>flink_user</name>
+    <value>flink</value>
+    <property-type>USER</property-type>
+    <description>User flink daemon runs as</description>
+  </property> 
+        
+  <property>
+    <name>flink_group</name>
+    <value>flink</value>
+    <property-type>GROUP</property-type>
+    <description>flink group</description>
+  </property> 
+          
+            
+  <property>
+    <name>content</name>
+    <value>
+#==============================================================================
+# Common
+#==============================================================================
+
+jobmanager.rpc.address: localhost
+
+jobmanager.rpc.port: 6123
+
+jobmanager.heap.mb: 256
+
+taskmanager.heap.mb: 512
+
+taskmanager.numberOfTaskSlots: 1
+
+parallelism.default: 1
+
+#==============================================================================
+# Web Frontend
+#==============================================================================
+
+# The port under which the web-based runtime monitor listens.
+# A value of -1 deactivates the web server.
+jobmanager.web.port: 8081
+
+# The port uder which the standalone web client
+# (for job upload and submit) listens.
+
+webclient.port: 8080
+
+#==============================================================================
+# Streaming state checkpointing
+#==============================================================================
+
+# The backend that will be used to store operator state checkpoints if
+# checkpointing is enabled.
+#
+# Supported backends: jobmanager, filesystem
+
+state.backend: jobmanager
+
+# Directory for storing checkpoints in a flink supported filesystem
+# Note: State backend must be accessible from the JobManager, use file://
+# only for local setups.
+#
+# state.backend.fs.checkpointdir: hdfs://checkpoints
+
+#==============================================================================
+# Advanced
+#==============================================================================
+
+# The number of buffers for the network stack.
+#
+# taskmanager.network.numberOfBuffers: 2048
+
+# Directories for temporary files.
+#
+# Add a delimited list for multiple directories, using the system directory
+# delimiter (colon ':' on unix) or a comma, e.g.:
+#     /data1/tmp:/data2/tmp:/data3/tmp
+#
+# Note: Each directory entry is read from and written to by a different I/O
+# thread. You can include the same directory multiple times in order to create
+# multiple I/O threads against that directory. This is for example relevant for
+# high-throughput RAIDs.
+#
+# If not specified, the system-specific Java temporary directory (java.io.tmpdir
+# property) is taken.
+#
+# taskmanager.tmp.dirs: /tmp
+
+# Path to the Hadoop configuration directory.
+#
+# This configuration is used when writing into HDFS. Unless specified otherwise,
+# HDFS file creation will use HDFS default settings with respect to block-size,
+# replication factor, etc.
+#
+# You can also directly specify the paths to hdfs-default.xml and hdfs-site.xml
+# via keys 'fs.hdfs.hdfsdefault' and 'fs.hdfs.hdfssite'.
+#
+# fs.hdfs.hadoopconf: /path/to/hadoop/conf/
+
+  </value>
+  <description>Template for flink-conf.yaml</description>
+  
+  </property>
+
+</configuration>
+
