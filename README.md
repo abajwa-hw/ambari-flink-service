@@ -90,7 +90,7 @@ cd /opt/flink
 - This should generate a series of word counts
 ![Image](../master/screenshots/Flink-wordcount.png?raw=true)
 
-- Open the YARN ResourceManager UI. Notice Flink is running on YARN
+- Open the [YARN ResourceManager UI](http://sandbox.hortonworks.com:8088/cluster). Notice Flink is running on YARN
 ![Image](../master/screenshots/YARN-UI.png?raw=true)
 
 - Click the ApplicationMaster link to access Flink webUI
