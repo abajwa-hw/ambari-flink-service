@@ -88,6 +88,7 @@ cd /opt/flink
 ./bin/flink run ./examples/flink-java-examples-0.9.1-WordCount.jar
 ```
 - This should generate a series of word counts
+![Image](../master/screenshots/Flink-wordcount.png?raw=true)
 
 - Open the YARN ResourceManager UI. Notice Flink is running on YARN
 ![Image](../master/screenshots/YARN-UI.png?raw=true)
