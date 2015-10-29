@@ -1,5 +1,5 @@
 #### An Ambari Service for Flink
-Ambari service for easily installing and managing Flink on HDP cluster and viewing metrics.
+Ambari service for easily installing and managing Flink on HDP clusters.
 
 Features:
 
