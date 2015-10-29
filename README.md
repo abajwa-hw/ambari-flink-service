@@ -82,6 +82,7 @@ curl -u admin:$PASSWORD -i -H 'X-Requested-By: ambari' -X PUT -d '{"RequestInfo"
 
 - Run word count job
 ```
+su flink
 export HADOOP_CONF_DIR=/etc/hadoop/conf
 cd /opt/flink
 ./bin/flink run ./examples/flink-java-examples-0.9.1-WordCount.jar
