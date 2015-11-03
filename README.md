@@ -102,6 +102,11 @@ cd /opt/flink
 - View metrics in the Task Manager tab:
 ![Image](../master/screenshots/Flink-UI-3.png?raw=true)
 
+#### Other things to try
+
+- [Apache Zeppelin](https://zeppelin.incubator.apache.org/) now also supports Flink. You can also install it via [Zeppelin Ambari service](https://github.com/hortonworks-gallery/ambari-zeppelin-service) for vizualization
+
+
 
 #### Remove service
 
