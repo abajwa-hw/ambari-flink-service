@@ -1,5 +1,7 @@
 #### An Ambari Service for Flink
 Ambari service for easily installing and managing Flink on HDP clusters.
+Apache Flink is an open source platform for distributed stream and batch data processing
+More details on Flink and how it is being used in the industry today available here: [http://flink-forward.org/?post_type=session](http://flink-forward.org/?post_type=session)
 
 Features:
 
@@ -106,6 +108,7 @@ cd /opt/flink
 
 - [Apache Zeppelin](https://zeppelin.incubator.apache.org/) now also supports Flink. You can also install it via [Zeppelin Ambari service](https://github.com/hortonworks-gallery/ambari-zeppelin-service) for vizualization
 
+More details on Flink and how it is being used in the industry today available here: [http://flink-forward.org/?post_type=session](http://flink-forward.org/?post_type=session)
 
 
 #### Remove service
