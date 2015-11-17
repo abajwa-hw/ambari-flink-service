@@ -88,8 +88,8 @@ class Master(Script):
   def stop(self, env):
     import params
     import status_params    
-    Execute ('pkill -f org.apache.flink.yarn.ApplicationMaster')
-    Execute ('rm ' + status_params.flink_pid_file)
+    Execute ('pkill -f org.apache.flink.yarn.ApplicationMaster', ignore_failures=True)
+    Execute ('rm ' + status_params.flink_pid_file, ignore_failures=True)
  
       
   def start(self, env):
@@ -102,10 +102,16 @@ class Master(Script):
 
     Execute('echo bin dir ' + params.bin_dir)        
     Execute('echo pid file ' + status_params.flink_pid_file)
-    Execute (format("export HADOOP_CONF_DIR={hadoop_conf_dir}; {bin_dir}/yarn-session.sh -n {flink_numcontainers} -jm {flink_jobmanager_memory} -tm {flink_container_memory} -d >> {flink_log_file}"), user=params.flink_user)
+    cmd = format("export HADOOP_CONF_DIR={hadoop_conf_dir}; {bin_dir}/yarn-session.sh -n {flink_numcontainers} -jm {flink_jobmanager_memory} -tm {flink_container_memory} -qu {flink_queue} -nm {flink_appname} -d")
+    if params.flink_streaming:
+      cmd = cmd + ' -st '
+    Execute (cmd + format(" >> {flink_log_file}"), user=params.flink_user)
 
     Execute("ps -ef | grep org.apache.flink.yarn.ApplicationMaster | awk {'print $2'} | head -n 1 > " + status_params.flink_pid_file, user=params.flink_user)
     #Execute('chown '+params.flink_user+':'+params.flink_group+' ' + status_params.flink_pid_file)
+
+    if os.path.exists(params.temp_file):
+      os.remove(params.temp_file)
     
   def status(self, env):
     import status_params       

@@ -17,7 +17,24 @@
     <description>Number of YARN container to allocate (=Number of Task Managers)</description>
   </property> 
 
+  <property>
+    <name>flink_appname</name>
+    <value>flinkapp-from-ambari</value>
+    <description>Flink application name</description>
+  </property> 
 
+  <property>
+    <name>flink_queue</name>
+    <value>default</value>
+    <description>YARN queue to schedule Flink job on</description>
+  </property> 
+
+  <property>
+    <name>flink_streaming</name>
+    <value>false</value>
+    <description>If true, Flink will be started in streaming mode: to be used when only streaming jobs will be executed on Flink</description>
+  </property> 
+  
   <property>
     <name>flink_jobmanager_memory</name>
     <value>768</value>
@@ -46,7 +63,7 @@
 
   <property>
     <name>flink_download_url</name>
-    <value>http://www.gtlib.gatech.edu/pub/apache/flink/flink-0.9.1/flink-0.9.1-bin-hadoop27.tgz</value>
+    <value>http://www.us.apache.org/dist/flink/flink-0.10.0/flink-0.10.0-bin-hadoop27-scala_2.10.tgz</value>
     <description>Snapshot download location. Downloaded when setup_prebuilt is true</description>
   </property>   
 

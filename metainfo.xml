@@ -6,7 +6,7 @@
             <name>FLINK</name>
             <displayName>Flink</displayName>
             <comment>Apache Flink is a streaming dataflow engine that provides data distribution, communication, and fault tolerance for distributed computations over data streams.</comment>
-            <version>0.0.1</version>
+            <version>0.10.0</version>
             <components>
                 <component>
                   <name>FLINK_MASTER</name>

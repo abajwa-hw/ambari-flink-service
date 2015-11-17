@@ -88,7 +88,8 @@ curl -u admin:$PASSWORD -i -H 'X-Requested-By: ambari' -X PUT -d '{"RequestInfo"
 su flink
 export HADOOP_CONF_DIR=/etc/hadoop/conf
 cd /opt/flink
-./bin/flink run ./examples/flink-java-examples-0.9.1-WordCount.jar
+./bin/flink run ./examples/WordCount.jar
+#/opt/flink/flink-dist/target/flink-1.0-SNAPSHOT-bin/flink-1.0-SNAPSHOT/bin/flink run /opt/flink/flink-dist/target/flink-1.0-SNAPSHOT-bin/flink-1.0-SNAPSHOT/examples/WordCount.jar
 ```
 - This should generate a series of word counts
 ![Image](../master/screenshots/Flink-wordcount.png?raw=true)
