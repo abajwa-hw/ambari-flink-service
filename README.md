@@ -6,7 +6,7 @@ More details on Flink and how it is being used in the industry today available h
 
 The Ambari service lets you easily install/compile Flink on HDP 2.3
 - Features:
-  - By default, downloads prebuilt package of Flink 0.9.1, but also gives option to build the latest Flink from source instead
+  - By default, downloads prebuilt package of Flink 0.10.1, but also gives option to build the latest Flink from source instead
   - Exposes flink-conf.yaml in Ambari UI 
 
 Author: [Ali Bajwa](https://github.com/abajwa-hw)
