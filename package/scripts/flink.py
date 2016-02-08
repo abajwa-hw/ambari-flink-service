@@ -88,8 +88,11 @@ class Master(Script):
   def stop(self, env):
     import params
     import status_params    
-    Execute ('pkill -f org.apache.flink.yarn.ApplicationMaster', ignore_failures=True)
-    Execute ('rm ' + status_params.flink_pid_file, ignore_failures=True)
+    from resource_management.core import sudo
+    pid = str(sudo.read_file(status_params.flink_pid_file))
+    Execute('yarn application -kill ' + pid, user=params.flink_user)
+
+    Execute('rm ' + status_params.flink_pid_file, ignore_failures=True)
  
       
   def start(self, env):
@@ -107,16 +110,33 @@ class Master(Script):
       cmd = cmd + ' -st '
     Execute (cmd + format(" >> {flink_log_file}"), user=params.flink_user)
 
-    Execute("ps -ef | grep org.apache.flink.yarn.ApplicationMaster | awk {'print $2'} | head -n 1 > " + status_params.flink_pid_file, user=params.flink_user)
+    Execute("yarn application -list 2>/dev/null | awk '/flinkapp-from-ambari/ {print $1}' | head -n1 > " + status_params.flink_pid_file, user=params.flink_user)
     #Execute('chown '+params.flink_user+':'+params.flink_group+' ' + status_params.flink_pid_file)
 
     if os.path.exists(params.temp_file):
       os.remove(params.temp_file)
-    
+
+  def check_flink_status(self, pid_file):
+    from datetime import datetime 
+    from resource_management.core.exceptions import ComponentIsNotRunning
+    from resource_management.core import sudo
+    import shlex, subprocess
+    if not pid_file or not os.path.isfile(pid_file):
+      raise ComponentIsNotRunning()
+    try:
+      pid = str(sudo.read_file(pid_file)) 
+      cmd_line = "/usr/bin/yarn application -list"
+      args = shlex.split(cmd_line)
+      p = subprocess.check_output(args, stderr=subprocess.STDOUT)
+      if p.find(pid.strip()) < 0:
+        raise ComponentIsNotRunning() 
+    except Exception, e:
+      raise ComponentIsNotRunning()
+
   def status(self, env):
     import status_params       
-    check_process_status(status_params.flink_pid_file)
-
+    from datetime import datetime
+    self.check_flink_status(status_params.flink_pid_file)
 
   def set_conf_bin(self, env):
     import params
