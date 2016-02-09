@@ -109,8 +109,7 @@ class Master(Script):
     if params.flink_streaming:
       cmd = cmd + ' -st '
     Execute (cmd + format(" >> {flink_log_file}"), user=params.flink_user)
-
-    Execute("yarn application -list 2>/dev/null | awk '/flinkapp-from-ambari/ {print $1}' | head -n1 > " + status_params.flink_pid_file, user=params.flink_user)
+    Execute("yarn application -list 2>/dev/null | awk '/" + params.flink_appname + "/ {print $1}' | head -n1 > " + status_params.flink_pid_file, user=params.flink_user)
     #Execute('chown '+params.flink_user+':'+params.flink_group+' ' + status_params.flink_pid_file)
 
     if os.path.exists(params.temp_file):
@@ -120,6 +119,7 @@ class Master(Script):
     from datetime import datetime 
     from resource_management.core.exceptions import ComponentIsNotRunning
     from resource_management.core import sudo
+    from subprocess import PIPE,Popen
     import shlex, subprocess
     if not pid_file or not os.path.isfile(pid_file):
       raise ComponentIsNotRunning()
@@ -127,7 +127,8 @@ class Master(Script):
       pid = str(sudo.read_file(pid_file)) 
       cmd_line = "/usr/bin/yarn application -list"
       args = shlex.split(cmd_line)
-      p = subprocess.check_output(args, stderr=subprocess.STDOUT)
+      proc = Popen(args, stdout=PIPE)
+      p = str(proc.communicate()[0].split())
       if p.find(pid.strip()) < 0:
         raise ComponentIsNotRunning() 
     except Exception, e:
