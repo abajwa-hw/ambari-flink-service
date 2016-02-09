@@ -10,7 +10,6 @@ The Ambari service lets you easily install/compile Flink on HDP 2.3
   - Exposes flink-conf.yaml in Ambari UI 
 
 Author: [Ali Bajwa](https://github.com/abajwa-hw)
-- Thanks to [Davide Vergari](https://github.com/dvergari) for enhancing to run in clustered env
 
 #### Setup
 
