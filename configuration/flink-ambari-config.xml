@@ -63,7 +63,7 @@
 
   <property>
     <name>flink_download_url</name>
-    <value>http://www.us.apache.org/dist/flink/flink-0.10.1/flink-0.10.1-bin-hadoop27-scala_2.10.tgz</value>
+    <value>http://www.us.apache.org/dist/flink/flink-1.0.0/flink-1.0.0-bin-hadoop27-scala_2.10.tgz</value>
     <description>Snapshot download location. Downloaded when setup_prebuilt is true</description>
   </property>   
 
