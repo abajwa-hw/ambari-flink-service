@@ -6,7 +6,7 @@ More details on Flink and how it is being used in the industry today available h
 
 The Ambari service lets you easily install/compile Flink on HDP 2.3
 - Features:
-  - By default, downloads prebuilt package of Flink 0.10.1, but also gives option to build the latest Flink from source instead
+  - By default, downloads prebuilt package of Flink 1.0, but also gives option to build the latest Flink from source instead
   - Exposes flink-conf.yaml in Ambari UI 
 
 Limitations:
@@ -93,8 +93,7 @@ curl -u admin:$PASSWORD -i -H 'X-Requested-By: ambari' -X PUT -d '{"RequestInfo"
 su flink
 export HADOOP_CONF_DIR=/etc/hadoop/conf
 cd /opt/flink
-./bin/flink run ./examples/WordCount.jar
-#/opt/flink/flink-dist/target/flink-1.0-SNAPSHOT-bin/flink-1.0-SNAPSHOT/bin/flink run /opt/flink/flink-dist/target/flink-1.0-SNAPSHOT-bin/flink-1.0-SNAPSHOT/examples/WordCount.jar
+./bin/flink run --jobmanager yarn-cluster -yn 1 -ytm 768 -yjm 768 ./examples/batch/WordCount.jar
 ```
 - This should generate a series of word counts
 ![Image](../master/screenshots/Flink-wordcount.png?raw=true)
