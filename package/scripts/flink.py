@@ -21,8 +21,7 @@ class Master(Script):
             
     Directory([status_params.flink_pid_dir, params.flink_log_dir, params.flink_install_dir],
             owner=params.flink_user,
-            group=params.flink_group,
-            recursive=True
+            group=params.flink_group
     )   
 
     File(params.flink_log_file,
