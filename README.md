@@ -4,7 +4,7 @@ Apache Flink is an open source platform for distributed stream and batch data pr
 More details on Flink and how it is being used in the industry today available here: [http://flink-forward.org/?post_type=session](http://flink-forward.org/?post_type=session)
 
 
-The Ambari service lets you easily install/compile Flink on HDP 2.3
+The Ambari service lets you easily install/compile Flink on HDP 2.5
 - Features:
   - By default, downloads prebuilt package of Flink 1.0, but also gives option to build the latest Flink from source instead
   - Exposes flink-conf.yaml in Ambari UI 
@@ -18,7 +18,7 @@ Author: [Ali Bajwa](https://github.com/abajwa-hw)
 
 #### Setup
 
-- Download HDP 2.3 sandbox VM image (Sandbox_HDP_2.3_1_VMware.ova) from [Hortonworks website](http://hortonworks.com/products/hortonworks-sandbox/)
+- Download HDP 2.5 sandbox VM image (Sandbox_HDP_2.5_1_VMware.ova) from [Hortonworks website](http://hortonworks.com/products/hortonworks-sandbox/)
 - Import Sandbox_HDP_2.3_1_VMware.ova into VMWare and set the VM memory size to 8GB
 - Now start the VM
 - After it boots up, find the IP address of the VM and add an entry into your machines hosts file. For example:
