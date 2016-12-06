@@ -16,7 +16,13 @@
     <value>1</value>
     <description>Number of YARN container to allocate (=Number of Task Managers)</description>
   </property> 
-
+  
+  <property>
+    <name>flink_numberoftaskslots</name>
+    <value>1</value>
+    <description>Number of task slots in each container</description>
+  </property> 
+  
   <property>
     <name>flink_appname</name>
     <value>flinkapp-from-ambari</value>
