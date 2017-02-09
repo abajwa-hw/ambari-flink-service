@@ -43,8 +43,8 @@ class Master(Script):
       #Fetch and unzip snapshot build, if no cached flink tar package exists on Ambari server node
       if not os.path.exists(params.temp_file):
         Execute('wget '+params.flink_download_url+' -O '+params.temp_file+' -a '  + params.flink_log_file, user=params.flink_user)
-      Execute('tar -zxvf '+params.temp_file+' -C ' + params.flink_install_dir + ' >> ' + params.flink_log_file, user=params.flink_user)
-      Execute('mv '+params.flink_install_dir+'/*/* ' + params.flink_install_dir, user=params.flink_user)
+        Execute('tar -zxvf '+params.temp_file+' -C ' + params.flink_install_dir + ' >> ' + params.flink_log_file, user=params.flink_user)
+        Execute('mv '+params.flink_install_dir+'/*/* ' + params.flink_install_dir, user=params.flink_user)
                 
       #update the configs specified by user
       self.configure(env, True)
