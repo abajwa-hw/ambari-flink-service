@@ -62,7 +62,7 @@
 
   <property>
     <name>flink_download_url</name>
-    <value>http://mirror.nbtelecom.com.br/apache/flink/flink-1.1.2/flink-1.1.2-bin-hadoop27-scala_2.10.tgz</value>
+    <value>http://www-us.apache.org/dist/flink/flink-1.2.0/flink-1.2.0-bin-hadoop27-scala_2.11.tgz</value>
     <description>Snapshot download location. Downloaded when setup_prebuilt is true</description>
   </property>
 
