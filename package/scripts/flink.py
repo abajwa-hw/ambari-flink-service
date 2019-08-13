@@ -1,4 +1,4 @@
-import sys, os, pwd, grp, signal, time, glob
+import sys, os, pwd, grp, signal, time, glob, subprocess
 from resource_management import *
 from subprocess import call
 
@@ -45,7 +45,8 @@ class Master(Script):
         Execute('wget '+params.flink_download_url+' -O '+params.temp_file+' -a '  + params.flink_log_file, user=params.flink_user)
         Execute('tar -zxvf '+params.temp_file+' -C ' + params.flink_install_dir + ' >> ' + params.flink_log_file, user=params.flink_user)
         Execute('mv '+params.flink_install_dir+'/*/* ' + params.flink_install_dir, user=params.flink_user)
-                
+        Execute('wget ' + params.flink_hadoop_shaded_jar_url + ' -P ' + params.flink_install_dir+'/lib' + ' >> ' + params.flink_log_file, user=params.flink_user)
+
       #update the configs specified by user
       self.configure(env, True)
 
@@ -104,7 +105,9 @@ class Master(Script):
 
     Execute('echo bin dir ' + params.bin_dir)        
     Execute('echo pid file ' + status_params.flink_pid_file)
-    cmd = format("export HADOOP_CONF_DIR={hadoop_conf_dir}; {bin_dir}/yarn-session.sh -n {flink_numcontainers} -s {flink_numberoftaskslots} -jm {flink_jobmanager_memory} -tm {flink_container_memory} -qu {flink_queue} -nm {flink_appname} -d")
+    cmd_open = subprocess.Popen(["hadoop", "classpath"], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    hadoop_classpath = cmd_open.communicate()[0].strip()
+    cmd = format("export HADOOP_CONF_DIR={hadoop_conf_dir}; export HADOOP_CLASSPATH={hadoop_classpath}; {bin_dir}/yarn-session.sh -n {flink_numcontainers} -s {flink_numberoftaskslots} -jm {flink_jobmanager_memory} -tm {flink_container_memory} -qu {flink_queue} -nm {flink_appname} -d")
     if params.flink_streaming:
       cmd = cmd + ' -st '
     Execute (cmd + format(" >> {flink_log_file}"), user=params.flink_user)
