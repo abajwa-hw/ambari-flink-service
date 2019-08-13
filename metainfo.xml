@@ -22,7 +22,7 @@
             </components>
             <osSpecifics>
               <osSpecific>
-                <osFamily>redhat6</osFamily>
+                <osFamily>redhat7,redhat6</osFamily>
                 <packages>
                    <package><name>git</name></package>    
                    <package><name>java-1.7.0-openjdk-devel</name></package>  
