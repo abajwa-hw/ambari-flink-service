@@ -4,9 +4,9 @@ Apache Flink is an open source platform for distributed stream and batch data pr
 More details on Flink and how it is being used in the industry today available here: [http://flink-forward.org/?post_type=session](http://flink-forward.org/?post_type=session)
 
 
-The Ambari service lets you easily install/compile Flink on HDP 2.5.3
+The Ambari service lets you easily install/compile Flink on HDP 2.6.5
 - Features:
-  - By default, downloads prebuilt package of Flink 1.2, but also gives option to build the latest Flink from source instead
+  - By default, downloads prebuilt package of Flink 1.8.1, but also gives option to build the latest Flink from source instead
   - Exposes flink-conf.yaml in Ambari UI 
 
 Limitations:
@@ -16,10 +16,11 @@ Limitations:
 Author: [Ali Bajwa](https://github.com/abajwa-hw)
 - Thanks to [Davide Vergari](https://github.com/dvergari) for enhancing to run in clustered env
 - Thanks to [Ben Harris](https://github.com/jamesbenharris) for updating libraries to work with HDP 2.5.3
+- Thanks to [Anand Subramanian](https://github.com/anandsubbu) for updating libraries to work with HDP 2.6.5 and flink version 1.8.1
 #### Setup
 
-- Download HDP 2.5 sandbox VM image (Sandbox_HDP_2.5_1_VMware.ova) from [Hortonworks website](http://hortonworks.com/products/hortonworks-sandbox/)
-- Import Sandbox_HDP_2.3_1_VMware.ova into VMWare and set the VM memory size to 8GB
+- Download HDP 2.6 sandbox VM image (HDP_2.6.5_virtualbox_180626.ova) from [Cloudera website](https://www.cloudera.com/downloads/hortonworks-sandbox/hdp.html)
+- Import HDP_2.6.5_virtualbox_180626.ova into VMWare and set the VM memory size to 8GB
 - Now start the VM
 - After it boots up, find the IP address of the VM and add an entry into your machines hosts file. For example:
 ```
@@ -92,6 +93,7 @@ curl -u admin:$PASSWORD -i -H 'X-Requested-By: ambari' -X PUT -d '{"RequestInfo"
 ```
 su flink
 export HADOOP_CONF_DIR=/etc/hadoop/conf
+export HADOOP_CLASSPATH=`hadoop classpath`
 cd /opt/flink
 ./bin/flink run --jobmanager yarn-cluster -yn 1 -ytm 768 -yjm 768 ./examples/batch/WordCount.jar
 ```
@@ -123,21 +125,25 @@ More details on Flink and how it is being used in the industry today available h
   - Stop the service via Ambari
   - Unregister the service
   
-    ```
+```
 export SERVICE=FLINK
 export PASSWORD=admin
 export AMBARI_HOST=localhost
-#detect name of cluster
+
+# detect name of cluster
 output=`curl -u admin:$PASSWORD -i -H 'X-Requested-By: ambari'  http://$AMBARI_HOST:8080/api/v1/clusters`
 CLUSTER=`echo $output | sed -n 's/.*"cluster_name" : "\([^\"]*\)".*/\1/p'`
 
 curl -u admin:$PASSWORD -i -H 'X-Requested-By: ambari' -X DELETE http://$AMBARI_HOST:8080/api/v1/clusters/$CLUSTER/services/$SERVICE
+```
 
-#if above errors out, run below first to fully stop the service
-#curl -u admin:$PASSWORD -i -H 'X-Requested-By: ambari' -X PUT -d '{"RequestInfo": {"context" :"Stop $SERVICE via REST"}, "Body": {"ServiceInfo": {"state": "INSTALLED"}}}' http://$AMBARI_HOST:8080/api/v1/clusters/$CLUSTER/services/$SERVICE
-    ```
-   - Remove artifacts
-    ```
-    rm -rf /opt/flink*
-    rm /tmp/flink.tgz
-    ```   
+If above errors out, run below first to fully stop the service
+```
+curl -u admin:$PASSWORD -i -H 'X-Requested-By: ambari' -X PUT -d '{"RequestInfo": {"context" :"Stop $SERVICE via REST"}, "Body": {"ServiceInfo": {"state": "INSTALLED"}}}' http://$AMBARI_HOST:8080/api/v1/clusters/$CLUSTER/services/$SERVICE
+```
+
+- Remove artifacts
+```
+rm -rf /opt/flink*
+rm /tmp/flink.tgz
+```

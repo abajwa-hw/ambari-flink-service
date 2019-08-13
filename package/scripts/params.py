@@ -25,7 +25,7 @@ flink_streaming = config['configurations']['flink-ambari-config']['flink_streami
 
 hadoop_conf_dir = config['configurations']['flink-ambari-config']['hadoop_conf_dir']
 flink_download_url = config['configurations']['flink-ambari-config']['flink_download_url']
- 
+flink_hadoop_shaded_jar_url = config['configurations']['flink-ambari-config']['flink_hadoop_shaded_jar']
 
 conf_dir=''
 bin_dir=''
