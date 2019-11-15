@@ -35,6 +35,10 @@
 	        	<config-type>flink-ambari-config</config-type>      	   
       	    </configuration-dependencies>
             <restartRequiredAfterChange>false</restartRequiredAfterChange>
+
+            <requiredServices>
+              <service>YARN</service>
+            </requiredServices>
         </service>
     </services>
 </metainfo>
