@@ -98,7 +98,7 @@ curl -u admin:$PASSWORD -i -H 'X-Requested-By: ambari' -X PUT -d '{"RequestInfo"
     <description>Snapshot download location. Downloaded when setup_prebuilt is true</description>
  </property>
  ```
-value from [here](http://apachemirror.wuchna.com/flink/) or [here](http://www.us.apache.org/dist/flink/)  or [here](https://archive.apache.org/dist/) or customize repo
+value from [http://apachemirror.wuchna.com/flink/](http://apachemirror.wuchna.com/flink/) or [http://www.us.apache.org/dist/flink/](http://www.us.apache.org/dist/flink/)  or [https://archive.apache.org/dist/](https://archive.apache.org/dist/)or customize repo
 
 - metainfo.xml
 ```
@@ -120,6 +120,7 @@ value from [here](http://apachemirror.wuchna.com/flink/) or [here](http://www.us
  restart yarn
  
  #### Flink Configuration
+ ![Image](../master/screenshots/Flink-conf.png?raw=true)
 - java_home is consistent with / etc / profile
 ```
 hdp-select status hadoop-client
