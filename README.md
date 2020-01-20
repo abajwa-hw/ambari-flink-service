@@ -120,7 +120,7 @@ value from [http://apachemirror.wuchna.com/flink/](http://apachemirror.wuchna.co
  restart yarn
  
  #### Flink Configuration
- ![Image](../master/screenshots/Flink_conf.png?raw=true)
+ ![Image](../master/screenshots/Flink-conf.png?raw=true)
 - java_home is consistent with / etc / profile
 ```
 hdp-select status hadoop-client
