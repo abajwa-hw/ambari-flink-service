@@ -17,6 +17,7 @@ Author: [Ali Bajwa](https://github.com/abajwa-hw)
 - Thanks to [Davide Vergari](https://github.com/dvergari) for enhancing to run in clustered env
 - Thanks to [Ben Harris](https://github.com/jamesbenharris) for updating libraries to work with HDP 2.5.3
 - Thanks to [Anand Subramanian](https://github.com/anandsubbu) for updating libraries to work with HDP 2.6.5 and flink version 1.8.1
+- Thanks to [jzyhappy](https://github.com/jzyhappy) for updating libraries to work with HDP 2.6.5 and flink version 1.9.1
 #### Setup
 
 - Download HDP 2.6 sandbox VM image (HDP_2.6.5_virtualbox_180626.ova) from [Cloudera website](https://www.cloudera.com/downloads/hortonworks-sandbox/hdp.html)

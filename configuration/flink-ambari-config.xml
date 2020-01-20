@@ -69,7 +69,7 @@
 
   <property>
     <name>flink_download_url</name>
-    <value>http://apachemirror.wuchna.com/flink/flink-1.8.1/flink-1.8.1-bin-scala_2.11.tgz</value>
+    <value>http://www.us.apache.org/dist/flink/flink-1.9.1/flink-1.9.1-bin-scala_2.11.tgz</value>
     <description>Snapshot download location. Downloaded when setup_prebuilt is true</description>
   </property>
 
